@@ -14,26 +14,38 @@ class ResourceController extends Controller
 
     public function CreateProduct (Request $requst){
         Product::create([
-            'name' => $requst->input(''),
-            'price' => $requst->input(''),
-            'quantity' => $requst->input('')
+            'name' => $requst->input('name'),
+            'price' => $requst->input('price'),
+            'quantity' => $requst->input('quantity')
         ]);
 
         $products = Product::all();
-        return view('productlist',['products' => $products],['Product Added Sussessfuly!']);
+        return view('productlist',['products' => $products]);
     }
 
-    public function EditProduct(Request $requst) {
-        $product = Product::findorfail();
+    public function EditProduct($id,Request $request) {
+        $product = Product::findorfail($id);
+
+        $product->update([
+        'name' => $request->input('name'),
+        'price' => $request->input('price'),
+        'quantity' => $request->input('quantity')
+        ]);
 
         $products = Product::all();
-        return view('productlist',['products' => $products],['Product Edited Sussessfuly!']);
+        return view('productlist',['products' => $products]);
     }
 
-    public function DeleteProduct(Request $requst){
-        $product = Product::findorfail();
+    public function ShowEditForm($id) {
+        $product = Product::findOrFail($id);
+        return view('editproduct', ['product' => $product]);
+    }
+
+    public function DeleteProduct($id){
+        $product = Product::destroy($id);
 
         $products = Product::all();
-        return view('productlist',['products' => $products],['Product Deleted Sussessfuly!']);
+        return view('productlist',['products' => $products]);
     }
+
 }

@@ -11,6 +11,10 @@ Route::get('/', function () {
 Route::get('/task', [TaskController::class, 'index']);
 //
 Route::get('/product', [ResourceController::class, 'index']);
-Route::post('/product', [ResourceController::class, 'CreateProduct']);
-Route::post('/editproduct/{$id}', [ResourceController::class, 'EditProduct']);
-Route::delete('/product/{$id}', [ResourceController::class, 'DeleteProduct']);
+Route::get('/addproduct', function () {
+    return view('createproduct'); 
+});
+Route::post('/addproduct', [ResourceController::class, 'CreateProduct']);
+Route::get('/editproduct/{id}', [ResourceController::class, 'ShowEditForm']);
+Route::put('/editproduct/{id}', [ResourceController::class, 'EditProduct']);
+Route::delete('/deleteproduct/{id}', [ResourceController::class, 'DeleteProduct']);
