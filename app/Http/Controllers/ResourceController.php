@@ -42,7 +42,7 @@ class ResourceController extends Controller
     }
 
     public function DeleteProduct($id){
-        $product = Product::destroy($id);
+        Product::destroy($id);
 
         $products = Product::all();
         return view('productlist',['products' => $products]);
