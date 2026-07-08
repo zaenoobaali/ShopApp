@@ -1,5 +1,22 @@
 <div class="container">
+
+   @isset($success)
+    <div class="alert alert-success" style=" color: #2c3c41; padding: 15px; margin-bottom: 20px;">
+        {{ $success }}
+    </div>
+    @endisset
+
+
     <h1>Product List</h1>
+
+    <form action="/addproduct/" method="GET" style="display:inline;">
+            @csrf
+            @method('POST') 
+            
+            <button type="submit" class="btn btn-danger">
+                New Product
+            </button>
+    </form>
 
     @if(!empty($products) && $products->count())
         <table class="table table-bordered">

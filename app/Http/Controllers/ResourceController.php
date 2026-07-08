@@ -20,7 +20,8 @@ class ResourceController extends Controller
         ]);
 
         $products = Product::all();
-        return view('productlist',['products' => $products]);
+
+        return view('productlist',['products' => $products , 'success' => 'Product created successfully!']);
     }
 
     public function EditProduct($id,Request $request) {
@@ -33,7 +34,8 @@ class ResourceController extends Controller
         ]);
 
         $products = Product::all();
-        return view('productlist',['products' => $products]);
+        return view('productlist',['products' => $products, 'success' => 'Product updated successfully!']);
+
     }
 
     public function ShowEditForm($id) {
@@ -45,7 +47,9 @@ class ResourceController extends Controller
         Product::destroy($id);
 
         $products = Product::all();
-        return view('productlist',['products' => $products]);
+
+        return view('productlist',['products' => $products, 'success' => 'Product deleted successfully!']);
+
     }
 
 }
