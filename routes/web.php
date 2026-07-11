@@ -13,9 +13,7 @@ Route::get('/task', [TaskController::class, 'index']);
 //
 Route::get('/', [ResourceController::class, 'index']);
 
-Route::get('/addproduct', function () {
-    return view('createproduct'); 
-});
+Route::get('/addproduct', [ResourceController::class, 'ShowCreateForm']);
 Route::post('/addproduct', [ResourceController::class, 'CreateProduct']);
 Route::get('/editproduct/{id}', [ResourceController::class, 'ShowEditForm']);
 Route::put('/editproduct/{id}', [ResourceController::class, 'EditProduct']);

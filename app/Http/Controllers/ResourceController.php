@@ -12,6 +12,9 @@ class ResourceController extends Controller
         return view('productlist',['products' => $products]);
     }
 
+    public function ShowCreateForm(){
+        return view('createproduct');
+    }
     public function CreateProduct (Request $requst){
         Product::create([
             'name' => $requst->input('name'),
