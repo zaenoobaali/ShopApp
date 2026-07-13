@@ -22,9 +22,7 @@ class ResourceController extends Controller
             'quantity' => $requst->input('quantity')
         ]);
 
-        $products = Product::all();
-
-        return view('productlist',['products' => $products , 'success' => 'Product created successfully!']);
+        return redirect()->route('products.show')->with('success', 'Product created successfully!');
     }
 
     public function EditProduct($id,Request $request) {
@@ -36,8 +34,7 @@ class ResourceController extends Controller
         'quantity' => $request->input('quantity')
         ]);
 
-        $products = Product::all();
-        return view('productlist',['products' => $products, 'success' => 'Product updated successfully!']);
+        return redirect()->route('products.show')->with('success', 'Product updated successfully!');
 
     }
 
@@ -49,9 +46,7 @@ class ResourceController extends Controller
     public function DeleteProduct($id){
         Product::destroy($id);
 
-        $products = Product::all();
-
-        return view('productlist',['products' => $products, 'success' => 'Product deleted successfully!']);
+        return redirect()->route('products.show')->with('success', 'Product deleted successfully!');
 
     }
 

@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Add New Product</h1>
-    <form action="/addproduct" method="POST">
+    <form action="{{ route('products.store') }}" method="POST">
         @csrf
         <div>
             <label for="name">Name</label>

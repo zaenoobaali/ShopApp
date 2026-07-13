@@ -1,15 +1,21 @@
 <div class="container">
 
-   @isset($success)
+   <!-- @isset($success)
     <div class="alert alert-success" style=" color: #2c3c41; padding: 15px; margin-bottom: 20px;">
         {{ $success }}
     </div>
-    @endisset
+    @endisset -->
+
+    @if(session('success'))
+    <div class="mb-4 rounded-lg bg-green-50 p-4 text-sm text-green-800" role="alert">
+        <span class="font-medium">Success!</span> {{ session('success') }}
+    </div>
+    @endif
 
 
     <h1>Product List</h1>
 
-    <form action="/addproduct/" method="GET" style="display:inline;">
+    <form action="{{ route('products.create')}}" method="GET" style="display:inline;">
             @csrf
             @method('POST') 
             
@@ -34,9 +40,9 @@
                         <td>{{ $product->name }}</td>
                         <td>{{ number_format($product->price, 2) }}</td>
                         <td>{{ $product->quantity}}</td>
-                        <td><a href="/editproduct/{{ $product->id }}" class="btn btn-primary">
+                        <td><a href="{{ route('products.edit', ['id' => $product->id]) }}" class="btn btn-primary">
                         edit</a>
-                        <form action="/deleteproduct/{{ $product->id }}" method="POST" style="display:inline;">
+                        <form action="{{ route('products.destroy', ['id' => $product->id]) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE') 
                             
